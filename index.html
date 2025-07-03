@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Lista de Tareas</title>
-    <link rel="stylesheet" href="style.css">
-    
+  <meta charset="UTF-8">
+  <title>Calculador de Setsitos</title>
 </head>
 <body>
-    <h1>Tareas de la Clase</h1>
-    <ul>
-        <li>Tarea 1: Unidad 3.2 de ingles.</li>
-        <li>Tarea 2: Unidad 2 libro de etica fecha límite 2 abril.</li>
-        <li>Tarea 3: Actividad integradora etica fecha 9 mayo.</li>
-<li> Tarea 4: Pagina 124 Matematicas.</li>
-<li> Tarea 5: Habilidad verbal hasta la pagina 92.</li/
-<li> Tarea 6: Lectura 10 etica.</li>
-    </ul>
+
+  <h1>Calculador de Setsitos</h1>
+
+  <p>¿Cuántos setsitos llevas?</p>
+  <input id="setsitosInput" type="number" min="0">
+  <button onclick="calcularSetsitos()">Calcular</button>
+
+  <p id="resultado"></p>
+
+  <script>
+    function calcularSetsitos() {
+      const input = document.getElementById("setsitosInput").value;
+      const resultado = document.getElementById("resultado");
+
+      if (input === "" || isNaN(input) || input < 0) {
+        resultado.innerText = "Pon un número válido.";
+        return;
+      }
+
+      resultado.innerText = `Tú llevas ${input} setsitos.`;
+    }
+  </script>
+
 </body>
 </html>
