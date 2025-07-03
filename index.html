@@ -2,29 +2,92 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Calculador de Setsitos</title>
+  <title>Calculadora Pro</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    input, button {
+      font-size: 1.5em;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    #resultado {
+      font-size: 2em;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #loading {
+      width: 300px;
+      height: 20px;
+      border: 1px solid #ccc;
+      margin: 20px auto;
+      display: none;
+      position: relative;
+    }
+
+    #barra {
+      background-color: #4caf50;
+      height: 100%;
+      width: 0%;
+      transition: width 1.5s ease;
+    }
+
+    #textoCarga {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #666;
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Calculador de Setsitos</h1>
+  <h1>Calculadora Inteligente™</h1>
 
-  <p>¿Cuántos setsitos llevas?</p>
-  <input id="setsitosInput" type="number" min="0">
-  <button onclick="calcularSetsitos()">Calcular</button>
+  <input type="number" id="num1" placeholder="Número 1">
+  +
+  <input type="number" id="num2" placeholder="Número 2">
+  <br>
+  <button onclick="calcular()">Calcular</button>
 
-  <p id="resultado"></p>
+  <div id="loading">
+    <div id="barra"></div>
+  </div>
+  <div id="textoCarga">Realizando cálculos avanzados...</div>
+
+  <div id="resultado"></div>
 
   <script>
-    function calcularSetsitos() {
-      const input = document.getElementById("setsitosInput").value;
+    function calcular() {
+      const num1 = document.getElementById("num1").value;
+      const num2 = document.getElementById("num2").value;
       const resultado = document.getElementById("resultado");
+      const barra = document.getElementById("barra");
+      const loading = document.getElementById("loading");
+      const textoCarga = document.getElementById("textoCarga");
 
-      if (input === "" || isNaN(input) || input < 0) {
-        resultado.innerText = "Pon un número válido.";
-        return;
-      }
+      resultado.style.display = "none";
+      loading.style.display = "block";
+      textoCarga.style.display = "block";
+      barra.style.width = "0%";
 
-      resultado.innerText = `Tú llevas ${input} setsitos.`;
+      // "Carga falsa" durante 1.5 segundos
+      setTimeout(() => {
+        barra.style.width = "100%";
+      }, 100);
+
+      setTimeout(() => {
+        loading.style.display = "none";
+        textoCarga.style.display = "none";
+        resultado.innerText = `Resultado: ${num1}${num2}`;
+        resultado.style.display = "block";
+      }, 1600);
     }
   </script>
 
